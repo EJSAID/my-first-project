@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+
+
+
+typedef struct{
+    int identifiant;
+  char nom[20];
+  char prenom[20];
+  float moyenne;
+
+}etudiant;
+
+int main(){
+etudiant t[20],tmp;
+int i,k,id,indice,n;
+float note;
+
+printf("saisir nombre des etudiants: ");
+scanf("%d",&n);
+
+
+// remplissage
+for(i=0;i<n;i++){
+    float some=0;
+    printf("saisir les informations d'un nouvel etudiants\n");
+    printf("taper identifiant:\n");
+    scanf("%d",&t[i].identifiant);
+     printf("taper le nom :\n");
+    scanf("%s",&t[i].nom);
+     printf("taper prenom :\n");
+    scanf("%s",&t[i].prenom);
+    printf("taper les notes :\n");
+
+
+    for(int k=0; k<n;k++){
+        printf("note : %d\n",k+1);
+        scanf("%f",&note);
+        some+=note;
+
+    }
+   t[i].moyenne=(some / 2);
+   printf("note : %f\n",t[i].moyenne);
+}
+
+// affichage
+ printf(" les noms de tous les Etudiants sont :\n");
+
+for(i=0; i<2;i++) {
+    
+     printf("%s %s\n",t[i].nom);
+
+}
+
+
+
+for(i=0; i<n; i++) {
+
+      printf("le moyenne generale de l'etudiant %s %s est : %.2f\n",t[i].nom,t[i].prenom,t[i].moyenne);
+
+}
+
+    printf("entrer identifiant pour l'etudier que vous voulez : \n");
+    scanf("%d",&id);
+
+    for(i=1; i<n; i++) {
+
+        if (id==t[i].identifiant) {
+                printf("les informations de cet etudiant sont : le nome: %s le prenom: %s et le moyenne: %.2f\n",t[i].nom,t[i].prenom,t[i].moyenne);
+                indice=1;
+                break;
+        }
+        
+    }
+
+    if(indice!=1){
+        printf("incorrect \n");
+    }
+    // le tri
+  
+         for (i = 0; i <n; i++){
+      for (int j = i+1; j < n ; j++){
+         if (t[j].moyenne>t[i].moyenne) {
+                 tmp=t[i];
+                     t[i]=t[j];
+                     t[j]=tmp;
+         }
+      }
+}
+        
+
+                 for(i=0; i<n; i++) {
+             printf(" %s %s moyenne: %.2f\n",t[i].nom,t[i].prenom,t[i].moyenne);}
+
+
+return 0;}
